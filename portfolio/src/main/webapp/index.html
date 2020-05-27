@@ -1,42 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="content">
-      <h1>Mudit Gupta Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-        <div class="content" id="about">
-            <h2>About me:</h2>
-            <p>
-            I'm 18 years old, born March 17, 2001. I graduated from GSMST in '19, and currently attend Georgia Tech studying CS. I graduate in 2022. I went to Google's CSSI 2019.
-            </p>
-          <img src="images/IMG_5778.JPG"></img>
-        </div>
-        <div class="content" id="projects">
-            <h2>Past projects:</h2>
-            <ul>
-            <li>VRC Robotics 2019</li>
-            <li>VRC Robotics 2018</li>
-            <li>VRC Robotics 2017</li>
-            <li>Woke! app</li>
-            <li>pineapple game</li>
-            </ul>
-        </div>
-        <div class="content" id="links">
-            <p>I am <a href="https://www.google.com/search?q=potato">potato</a> man!</p>
-        </div>
-        <div class="content" id="memes">
-            <h2>Memes:</h2>
-            <img src="https://pics.me.me/google-someone-just-signed-in-on-a-device-do-you-46615353.png" alt="">
+
+<head>
+	<meta charset="utf-8">
+	<title>My portfolio</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+		<!-- <div class="nav_bar">
+      <a href="/">Home</a>
+      <a href="/projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/post">Post</a>
+    </div> -->
+		<div class="title_block">
+			<img id="title_bkgd_img" src="images/homies.png" alt="blur friends"/>
+			<div class="title_block_inner">
+				<img id="title_image" src="images/homies.png" alt="friends"/>
+				<div class="title_content">
+					<h1 class="title_content_item">
+						<center id="title">Mudit Gupta Portfolio</center>
+					</h1>
+					<div class="title_content_item" id="quick_links">
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="mainBody">
+		<div class="mainContent">
+            <div id="greeting-prompt">
+                <p>Click here to get a random message: </p>
+                <button id="greeting-container" onclick="addRandomGreeting()">Hello</button>
+            </div>
+			<!-- <div id="greeting-container"></div> -->
+			<div class="content" id="about">
+				<h2>About me:</h2>
+				<p>
+					I'm 18 years old, born March 17, 2001. I graduated from GSMST in '19, and currently attend Georgia
+					Tech
+					studying CS. I graduate in 2022. I went to Google's CSSI 2019.
+				</p>
+				<img src="images/IMG_5778.JPG" id="selfie" />
+            </div>
+            <div class="content" id="projects">
+                <h2>Past projects:</h2>
+                <ul>
+                    <li>VEX Robotics 2019</li>
+                    <li>VEX Robotics 2018</li>
+                    <li>VEX Robotics 2017</li>
+                    <li>Woke! app</li>
+                    <li>pineapple game</li>
+                </ul>
+            </div>
+            <div class="content" id="links">
+                <h2>Links:</h2>
+                <p><a href="https://www.linkedin.com/in/muditg317/">LinkedIn</a></p>
+                <p><a href="https://github.com/muditg317">GitHub</a></p>
+            </div>
+            <div class="content" id="memes">
+                <h2>Memes:</h2>
+                <img src="https://pics.me.me/google-someone-just-signed-in-on-a-device-do-you-46615353.png" alt="">
+            </div>
         </div>
     </div>
-  </body>
-  <script src="script.js"></script> 
+    <div class="konamiGame">
+        <div class="konami" id="bird">
+        </div>
+        <div class="konami pipe" id="pipeBottom">
+        </div>
+        <div class="konami pipe" id="pipeTop">
+        </div>
+        <div class="konami score">
+            <!-- <p id="label">Score:</p> -->
+            <p id="score">0</p>
+        </div>
+    </div>
+    <div class="pongGame">
+        <div class="pong" id="ball">
+        </div>
+        <div class="pong pipe" id="user">
+        </div>
+        <div class="pong pipe" id="cpu">
+        </div>
+        <div class="pong score">
+            <p id="score">0</p>
+        </div>
+    </div>
+    <script src="script.js" charset="utf-8"></script>
+</body>
+
 </html>
