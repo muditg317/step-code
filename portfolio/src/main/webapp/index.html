@@ -3,25 +3,33 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>My portfolio</title>
-	<link rel="stylesheet" href="style.css">
+	<title>Mudit Gupta</title>
+	<link rel="stylesheet" href="styles/base.css">
+	<link rel="stylesheet" href="styles/header.css">
+	<link rel="stylesheet" href="styles/navbar.css">
+	<link rel="stylesheet" href="styles/konami.css">
+	<link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 	<header>
-		<!-- <div class="nav_bar">
-      <a href="/">Home</a>
-      <a href="/projects">Projects</a>
-      <a href="/blog">Blog</a>
-      <a href="/post">Post</a>
-    </div> -->
-		<div class="title_block">
-			<img id="title_bkgd_img" src="images/homies.png" alt="blur friends"/>
+        <div id="top_nav" class="nav_bar">
+            <img class="logo" src="images/logo.png" alt="" onclick="navToSection('#top')">
+            <a class="nav_bar_item" id="nav_who_am_i" onclick="navToSection('#who_am_i')"><i class="fa fa-fw fa-user"></i> Who Am I?</a>
+            <a class="nav_bar_item" id="nav_projects" onclick="navToSection('#projects')"><i class="fa fa-fw fa-book"></i> Projects</a>
+            <a class="nav_bar_item" id="nav_gallery" onclick="navToSection('#gallery')"><i class="fa fa-fw fa-book"></i> Gallery</a>
+            <a class="nav_bar_item" id="nav_find_me_online" onclick="navToSection('#find_me_online')"><i class="fa fa-fw fa-globe"></i> Find Me Online</a>
+            <a class="nav_bar_item" id="nav_resume" onclick="navToSection('#resume')"><i class="fa fa-fw fa-file"></i> Resume</a>
+            <a class="menu" href="javascript:void(0);" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
+        </div>
+		<div class="title_block" id="top">
+			<img id="title_bkgd_img" src="images/homies low res.png" alt="blur friends"/>
 			<div class="title_block_inner">
-				<img id="title_image" src="images/homies.png" alt="friends"/>
+				<img id="title_image" src="images/homies low res.png" alt="friends"/>
 				<div class="title_content">
 					<h1 class="title_content_item">
-						<center id="title">Mudit Gupta Portfolio</center>
+						<center id="title">Mudit Gupta</center>
 					</h1>
 					<div class="title_content_item" id="quick_links">
 					</div>
@@ -31,39 +39,49 @@
 	</header>
 	<div class="mainBody">
 		<div class="mainContent">
-            <div id="greeting-prompt">
-                <p>Click here to get a random message: </p>
-                <button id="greeting-container" onclick="addRandomGreeting()">Hello</button>
+			<div class="content_block" id="who_am_i">
+				<h1>Who Am I?</h1>
+				<div class="content">
+                    <p>
+                        I'm 18 years old, born March 17, 2001. I graduated from GSMST in '19, and currently attend Georgia
+                        Tech studying CS. I graduate in 2022. I went to Google's CSSI 2019. 
+                    </p>
+                </div>
             </div>
-			<!-- <div id="greeting-container"></div> -->
-			<div class="content" id="about">
-				<h2>About me:</h2>
-				<p>
-					I'm 18 years old, born March 17, 2001. I graduated from GSMST in '19, and currently attend Georgia
-					Tech
-					studying CS. I graduate in 2022. I went to Google's CSSI 2019.
-				</p>
-				<img src="images/IMG_5778.JPG" id="selfie" />
+            <div class="content_block" id="projects">
+                <h1>Past projects</h1>
+                <div class="content">
+                    <ul>
+                        <li>VEX Robotics 2016-2019</li>
+                        <li>Woke! app</li>
+                        <li>Pineapple game</li>
+                        <li>CS-Vis</li>
+                    </ul>
+                </div>
             </div>
-            <div class="content" id="projects">
-                <h2>Past projects:</h2>
-                <ul>
-                    <li>VEX Robotics 2019</li>
-                    <li>VEX Robotics 2018</li>
-                    <li>VEX Robotics 2017</li>
-                    <li>Woke! app</li>
-                    <li>pineapple game</li>
-                </ul>
+            <div class="content_block" id="gallery">
+                <h1>Gallery</h1>
+				<div class="content" id="gallery-container">
+                    <img src="images/IMG_5778.JPG" id="selfie" />
+                </div>
             </div>
-            <div class="content" id="links">
-                <h2>Links:</h2>
-                <p><a href="https://www.linkedin.com/in/muditg317/">LinkedIn</a></p>
-                <p><a href="https://github.com/muditg317">GitHub</a></p>
+            <div class="content_block" id="find_me_online">
+                <h1>Links</h1>
+                <div class="content" id="badge-container">
+                    <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="muditg317"><a class="LI-simple-link" href='https://www.linkedin.com/in/muditg317?trk=profile-badge'>Mudit Gupta</a></div>
+                    <div class="github-card" data-github="muditg317" data-width="400" data-height="" data-theme="default"></div>
+                </div>
             </div>
-            <div class="content" id="memes">
-                <h2>Memes:</h2>
-                <img src="https://pics.me.me/google-someone-just-signed-in-on-a-device-do-you-46615353.png" alt="">
+            <div class="content_block" id="resume">
+                <h1>Resume</h1>
+                <div class="content">
+                    <iframe id="resume_view" src="https://docs.google.com/document/d/e/2PACX-1vSWlBCNnxE8mpmKv8aBahUDa9NUnho8tvLA1QWO7qw2PHSRHRByHlnI2_KzVYx32PbINR1YDE6Zs-HX/pub?embedded=true"></iframe>
+                </div>
             </div>
+        </div>
+        <div class="rising_button" id="back_to_top_block" onclick="goToTop()">
+            <p>Back to top:</p>
+            <img src="images/up_arrow.png" alt="">
         </div>
     </div>
     <div class="konamiGame">
@@ -89,7 +107,13 @@
             <p id="score">0</p>
         </div>
     </div>
-    <script src="script.js" charset="utf-8"></script>
+    <script src="scripts/base.js" charset="utf-8"></script>
+    <script src="scripts/navbar.js" charset="utf-8"></script>
+    <script src="scripts/toTop_button.js" charset="utf-8"></script>
+    <script src="scripts/main.js" charset="utf-8"></script>
+    <script src="scripts/konami.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+    <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 </body>
 
 </html>

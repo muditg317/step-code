@@ -1,83 +1,8 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Yeet!', 'Aight, Ima head out.', 'Beep boop, I\'m a coder', 'I wanna play games.'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
-
-const title_block = document.querySelector(".title_block_inner");
-const title_img = document.querySelector("#title_image");
-let img_width = title_img.naturalWidth*500/title_img.naturalHeight;
-title_block.style.width = img_width+"px";
-
-
-
-const clearContentBkgd = (content_block) => {
-  content_block.style.backgroundImage = "";
-}
-
-const randomMemes = [
-  "https://i.imgur.com/QKsSRsu.jpg",
-  "https://i.imgur.com/AolTIfZ.jpg",
-  "https://inteng-storage.s3.amazonaws.com/images/APRIL/sizes/black_hole_resize_md.jpg",
-  "https://cdn-images-1.medium.com/max/800/1*sa36HnySp33Inkm62q-Scw.png",
-  "http://devhumor.com/content/uploads/images/July2018/javascript_underwater.jpg",
-  "https://afinde-production.s3.amazonaws.com/uploads/981ebabb-5722-44c1-ad30-fc57fbc8ee9d.jpeg",
-  "https://preview.redd.it/bptzx7ur4uj11.jpg?width=960&crop=smart&auto=webp&s=d506a8f60ef41916578633bbb3e2d95ef7196fb7",
-  "https://blog.lipsumarium.com/assets/img/posts/2017-07-22-caption-memes-in-python/one-does-not-simply-make-a-good-meme-generator-in-python.jpg",
-  "https://i.redd.it/eqntkqfehnj01.jpg",
-  "https://wyncode.co/uploads/2014/08/181.jpg"];
-
-const randomizeContentBkgd = (content_block) => {
-  content_block.style.backgroundImage = `url('${randomMemes[Math.floor(Math.random() * randomMemes.length)]}')`;
-}
-
-document.addEventListener('click', function (event) {
-  element = event.target;
-  do {
-    if (element.classList && element.classList.contains("content")) {
-      break;
-    }
-    element = element.parentNode;
-  } while (element);
-  if(element && element.classList.contains("content") && element.id !== "memes") {
-    if(element.classList.contains("live")) {
-      clearContentBkgd(element);
-      element.classList.remove("live");
-    } else {
-      randomizeContentBkgd(element);
-      element.classList.add("live");
-    }
-  }
-},false);
-
-
 const recentKeys = [];
 const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "a", "b"];
 const endKonamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "z", "y"];
 let konami = false;
+let doneKonami = false;
 
 const konamiGame = document.querySelector(".konamiGame");
 let gameInterval = 0;
@@ -187,6 +112,7 @@ const executeKonami = () => {
   if(!konami) {
     alert("konami!");
     konami = true;
+    doneKonami = true;
     konamiGame.style.visibility = "visible";
     resetKonamiGame();
   } else {
@@ -195,9 +121,10 @@ const executeKonami = () => {
 };
 
 const endKonami = () => {
-  if(konami) {
+  if(doneKonami) {
     alert("no more konami.. :(");
     konami = false;
+    doneKonami = false;
     konamiGame.style.visibility = "hidden";
   } else {
     alert("try some konami!!");

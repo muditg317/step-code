@@ -1,0 +1,62 @@
+body {
+  margin: auto;
+  padding: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 700px;
+  align-items: center;
+}
+
+.mainBody {
+  position: relative;
+  top: 48px;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  min-width: 700px;
+  width: 100vw;
+  background-image: url("../images/tech tower.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+#mainBodyBkgdImg {
+  filter: brightness(1.2) blur(8px);
+  -webkit-filter: brightness(1.2) blur(8px);
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+  /* align-self: flex-start; */
+}
+
+.mainContent {
+  /* position: absolute; */
+  /* top: 0; */
+  max-width: 776px;
+  background-color: #ffffff99;
+  box-sizing: border-box;
+  margin: 1.5em 0;
+  padding: 1.5em;
+  border-radius: 1.5em;
+}
+
+.prettyButton {
+  min-height: 30px;
+  padding: 0px 10px;
+  margin: 10px;
+  color: black;
+  font-family: roboto;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 15px;
+  border-color: black;
+  border-width: 1px;
+}
+.prettyButton :hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.5);
+}
