@@ -15,7 +15,7 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   min-width: 700px;
-  width: 100vw;
+  width: 100%;
   background-image: url("../images/tech tower.jpg");
   background-repeat: no-repeat;
   background-size: cover;

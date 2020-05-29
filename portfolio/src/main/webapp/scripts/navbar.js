@@ -23,7 +23,7 @@ const navToSection = (elementSelector) => {
 }
 
 const windowResizeHandler_NAV = () => {
-    if (window.innerWidth > 650) {
+    if (window.innerWidth > 700) {
         top_nav.className = "nav_bar";
     }
 }

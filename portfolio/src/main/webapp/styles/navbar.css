@@ -55,7 +55,7 @@
     filter: invert(0);
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
     .nav_bar {
         justify-content: space-between;
     }
