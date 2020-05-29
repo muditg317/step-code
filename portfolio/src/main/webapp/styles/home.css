@@ -68,8 +68,9 @@
 
 #gallery-container > img {
     width: 40%;
-    padding: 30px;
+    margin: 30px;
     object-fit: contain;
+    border-radius: 0.5em;
 }
 
 #badge-container {
@@ -79,8 +80,9 @@
 }
 #badge-container>.LI-profile-badge .LI-badge-container.horizontal.light {
     background-color: #fff;
+    border-radius: 0.5em;
 }
-#badge-container>* {
+#badge-container > * {
     margin: 2em;
 }
 
