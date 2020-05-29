@@ -36,3 +36,10 @@ const jumpToSection = (elementSelector) => {
     const elemRect = element.getBoundingClientRect();
     scrollBy(0,elemRect.top-navBarHeight);
 }
+
+const docClickHandler_NAV = (event) => {
+    if (!top_nav.contains(event.target)) {
+        top_nav.classList.remove("responsive");
+    }
+};
+document.addEventListener("click", docClickHandler_NAV);
