@@ -60,3 +60,13 @@ body {
   color: rgba(0, 0, 0, 0.5);
   border-color: rgba(0, 0, 0, 0.5);
 }
+
+.inline-pic-left {
+    float: left;
+    margin-right: 2em;
+}
+
+.inline-pic-right {
+    float: right;
+    margin-left: 2em;
+}
