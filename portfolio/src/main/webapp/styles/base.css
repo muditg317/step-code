@@ -16,6 +16,7 @@ body {
   align-items: center;
   min-width: 700px;
   width: 100%;
+  z-index: 1;
 }
 
 .mainBody::after {
