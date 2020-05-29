@@ -67,9 +67,9 @@
 }
 
 #gallery-container > img {
-    max-width: 200px;
-    max-height: 200px;
-    margin: 30px;
+    width: 40%;
+    padding: 30px;
+    object-fit: contain;
 }
 
 #badge-container {
