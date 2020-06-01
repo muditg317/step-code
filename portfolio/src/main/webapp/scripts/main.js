@@ -32,8 +32,16 @@ let ticking = false;
 
 function scrollEvent(scroll_pos) {
     var content_index = 0;
-    while (content_index < content_blocks.length && !(content_blocks[content_index].getBoundingClientRect().top < 51 && content_blocks[content_index].getBoundingClientRect().bottom > 51)) {
-        content_index++;
+    // while (content_index < content_blocks.length && !(content_blocks[content_index].getBoundingClientRect().top < 51 && content_blocks[content_index].getBoundingClientRect().bottom > 51)) {
+    //     content_index++;
+    // }
+    let centerElement = document.elementFromPoint(window.innerWidth/2,window.innerHeight/2);
+    let block = centerElement;
+    while (block && !block.classList.contains("content_block")) {
+        block = block.parentElement;
+    }
+    if (scroll_pos === 0) {
+        block = null;
     }
 
     let nav_bar = document.querySelector(".nav_bar#top_nav");
@@ -42,8 +50,8 @@ function scrollEvent(scroll_pos) {
         current.className = current.className.replace(" active", "");
     }
 
-    if (content_index !== content_blocks.length) {
-        let nav_id = "nav_" + content_blocks[content_index].id;
+    if (block) {
+        let nav_id = "nav_" + block.id;
         let new_nav_item = nav_bar.querySelector("#"+nav_id);
         new_nav_item.className += " active";
     }
