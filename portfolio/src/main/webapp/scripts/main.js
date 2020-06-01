@@ -32,9 +32,6 @@ let ticking = false;
 
 function scrollEvent(scroll_pos) {
     var content_index = 0;
-    // while (content_index < content_blocks.length && !(content_blocks[content_index].getBoundingClientRect().top < 51 && content_blocks[content_index].getBoundingClientRect().bottom > 51)) {
-    //     content_index++;
-    // }
     let centerElement = document.elementFromPoint(window.innerWidth/2,window.innerHeight/2);
     let block = centerElement;
     while (block && !block.classList.contains("content_block")) {
@@ -69,3 +66,63 @@ window.addEventListener('scroll', function(e) {
         ticking = true;
     }
 });
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+const xwwwfurlenc = (srcjson) => {
+    if(typeof srcjson !== "object")
+      if(typeof console !== "undefined"){
+        console.log("\"srcjson\" is not a JSON object");
+        return null;
+      }
+    u = encodeURIComponent;
+    var urljson = "";
+    var keys = Object.keys(srcjson);
+    for(var i=0; i < keys.length; i++){
+        urljson += u(keys[i]) + "=" + u(srcjson[keys[i]]);
+        if(i < (keys.length-1))urljson+="&";
+    }
+    return urljson;
+}
+
+
+const commentList = document.getElementById("comment-list");
+const commentBox = document.getElementById("comment-text");
+const commentCountField = document.getElementById("num-comments");
+const postComment = async (override) => {
+    let comment = override || commentBox.value;
+    commentBox.value = "";
+    let response = await fetch("/data", {
+            method: "POST",
+            body: new URLSearchParams({comment})
+        });
+    let text = await response.text();
+    let data = JSON.parse(text);
+    loadComments(data);
+}
+const deleteComments = async () => {
+    let response = await fetch("/delete-data", {
+            method: "POST",
+        });
+    let text = await response.text();
+    // let data = JSON.parse(text);
+    await sleep(500);
+    loadComments();
+}
+const loadComments = async (recentPostKeyObject) => {
+    let response = await fetch(
+        "/data?" + xwwwfurlenc({
+            ...recentPostKeyObject,
+            maxComments: commentCountField.value}));
+    let text = await response.text();
+    let comments = JSON.parse(text);
+    commentList.innerHTML = "";
+    comments.forEach(comment => {
+        let p = document.createElement("p");
+        p.classList.add("comment");
+        p.innerText = comment;
+        commentList.appendChild(p);
+    });
+}
+loadComments();
