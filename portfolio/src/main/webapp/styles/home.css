@@ -49,41 +49,41 @@
 }
 
 .about-me-text {
-    text-indent: 4ch;
-    line-height: 2;
-    font-size: 1.2em;
+  text-indent: 4ch;
+  line-height: 2;
+  font-size: 1.2em;
 }
 
 .about-me-pic {
-    width: 10em;
-    border-radius: 0.5em;
+  width: 10em;
+  border-radius: 0.5em;
 }
 
 
 #gallery-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
 #gallery-container > img {
-    width: 40%;
-    margin: 30px;
-    object-fit: contain;
-    border-radius: 0.5em;
+  width: 40%;
+  margin: 30px;
+  object-fit: contain;
+  border-radius: 0.5em;
 }
 
 #badge-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 #badge-container>.LI-profile-badge .LI-badge-container.horizontal.light {
-    background-color: #fff;
-    border-radius: 0.5em;
+  background-color: #fff;
+  border-radius: 0.5em;
 }
 #badge-container > * {
-    margin: 2em;
+  margin: 2em;
 }
 
 .content_block#resume .content {
@@ -102,4 +102,5 @@
 
 #comment-list {
     max-height: 30em;
+    overflow-y: scroll;
 }

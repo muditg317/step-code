@@ -1,5 +1,3 @@
-
-
 const randomMemes = [
   "https://i.imgur.com/QKsSRsu.jpg",
   "https://i.imgur.com/AolTIfZ.jpg",
@@ -8,7 +6,8 @@ const randomMemes = [
   "http://devhumor.com/content/uploads/images/July2018/javascript_underwater.jpg",
   "https://afinde-production.s3.amazonaws.com/uploads/981ebabb-5722-44c1-ad30-fc57fbc8ee9d.jpeg",
   "https://preview.redd.it/bptzx7ur4uj11.jpg?width=960&crop=smart&auto=webp&s=d506a8f60ef41916578633bbb3e2d95ef7196fb7",
-  "https://blog.lipsumarium.com/assets/img/posts/2017-07-22-caption-memes-in-python/one-does-not-simply-make-a-good-meme-generator-in-python.jpg",
+  "https://blog.lipsumarium.com/assets/img/posts/2017-07-22-caption-memes-in-python/"
+      + "one-does-not-simply-make-a-good-meme-generator-in-python.jpg",
   "https://i.redd.it/eqntkqfehnj01.jpg",
   "https://wyncode.co/uploads/2014/08/181.jpg",
   "https://pics.me.me/google-someone-just-signed-in-on-a-device-do-you-46615353.png"
