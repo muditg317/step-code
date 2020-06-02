@@ -35,10 +35,12 @@ import com.google.appengine.api.datastore.FetchOptions;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/data-comments")
+public class DataCommentsServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -97,7 +99,7 @@ public class DataServlet extends HttpServlet {
             key = commentEntity.getKey();
         }
         response.setContentType("application/json;");
-        // String redirectURL = "/data";
+        // String redirectURL = "/data-comments";
         if (key != null) {
             // redirectURL += "?key="+key.getId();
             response.getWriter().println("{\"key\": " + key.getId() + "}");
@@ -105,6 +107,19 @@ public class DataServlet extends HttpServlet {
             response.getWriter().println("{}");
         }
         // response.sendRedirect(redirectURL);
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Query query = new Query("Comment");
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+
+        datastore.delete(
+                StreamSupport.stream(results.asIterable().spliterator(), false)
+                .map(Entity::getKey)
+                .collect(Collectors.toList()));
     }
 
 }

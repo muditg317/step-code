@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", domContentLoadedHandler_MAIN);
 
 const windowLoadHandler_MAIN = () => {
   setTitleImageWidth();
+  setTimeout(() => {
+    document.querySelector(".LI-profile-pic").src =
+        "https://media-exp1.licdn.com/dms/image/C5603AQGDOaDSpoTQ6g/profile-displayphoto-shrink_200_200/"
+        + "0?e=1596672000&v=beta&t=EiqH2TCfBNn58UQGlNgMf8MXUSLj0YTAqRDYsMEoefc";
+  }, 1000);
 }
 window.addEventListener("load",windowLoadHandler_MAIN);
 
@@ -66,63 +71,3 @@ window.addEventListener('scroll', function(e) {
     ticking = true;
   }
 });
-
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
-const xwwwfurlenc = (srcjson) => {
-  if(typeof srcjson !== "object")
-    if(typeof console !== "undefined"){
-      console.log("\"srcjson\" is not a JSON object");
-      return null;
-    }
-  u = encodeURIComponent;
-  var urljson = "";
-  var keys = Object.keys(srcjson);
-  for(var i=0; i < keys.length; i++){
-    urljson += u(keys[i]) + "=" + u(srcjson[keys[i]]);
-    if(i < (keys.length-1))urljson+="&";
-  }
-  return urljson;
-}
-
-
-const commentList = document.getElementById("comment-list");
-const commentBox = document.getElementById("comment-text");
-const commentCountField = document.getElementById("num-comments");
-const postComment = async (override) => {
-  let comment = override || commentBox.value;
-  commentBox.value = "";
-  let response = await fetch("/data", {
-      method: "POST",
-      body: new URLSearchParams({comment})
-    });
-  let text = await response.text();
-  let data = JSON.parse(text);
-  loadComments(data);
-}
-const deleteComments = async () => {
-  let response = await fetch("/delete-data", {
-      method: "POST",
-    });
-  let text = await response.text();
-  // let data = JSON.parse(text);
-  await sleep(500);
-  loadComments();
-}
-const loadComments = async (recentPostKeyObject) => {
-  let response = await fetch(
-    "/data?" + xwwwfurlenc({
-      ...recentPostKeyObject,
-      maxComments: commentCountField.value}));
-  let text = await response.text();
-  let comments = JSON.parse(text);
-  commentList.innerHTML = "";
-  comments.forEach(comment => {
-    let p = document.createElement("p");
-    p.classList.add("comment");
-    p.innerText = comment;
-    commentList.appendChild(p);
-  });
-}
-loadComments();

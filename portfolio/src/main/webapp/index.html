@@ -25,8 +25,10 @@
 				Gallery</a>
 			<a class="nav_bar_item" id="nav_find_me_online"
 				onclick="navToSection('#find_me_online')"><i class="fa fa-fw fa-globe"></i> Find Me Online</a>
-			<a class="nav_bar_item" id="nav_resume" onclick="navToSection('#resume')"><i class="fa fa-fw fa-file"></i>
-				Resume</a>
+			<!-- <a class="nav_bar_item" id="nav_resume" onclick="navToSection('#resume')"><i class="fa fa-fw fa-file"></i>
+				Resume</a> -->
+			<a class="nav_bar_item" id="nav_comments" onclick="navToSection('#comments')"><i class="fa fa-fw fa-file"></i>
+				Comment</a>
 			<a class="menu" href="javascript:void(0);" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
 		</div>
 		<div class="title_block" id="top">
@@ -87,8 +89,12 @@
         <h1>Find Me Online</h1>
         <div class="content" id="badge-container">
           <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US"
-              data-type="horizontal" data-theme="light" data-vanity="muditg317"><a class="LI-simple-link"
-              href='https://www.linkedin.com/in/muditg317?trk=profile-badge'>Mudit Gupta</a></div>
+              data-type="horizontal" data-theme="light" data-vanity="muditg317" data-rendered="true"
+              data-uid="173090">
+            <a class="LI-simple-link" href="https://www.linkedin.com/in/muditg317?trk=profile-badge">
+              Mudit Gupta
+            </a>
+          </div>
           <div class="github-card" data-github="muditg317" data-width="400" data-height=""
               data-theme="default"></div>
         </div>
@@ -106,44 +112,44 @@
         </div>
       </div>
       <!-- <div class="content_block" id="resume">
-          <h1>Resume</h1>
-          <div class="content">
-              <iframe id="resume_view" src="https://docs.google.com/document/d/e/2PACX-1vSWlBCNnxE8mpmKv8aBahUDa9NUnho8tvLA1QWO7qw2PHSRHRByHlnI2_KzVYx32PbINR1YDE6Zs-HX/pub?embedded=true"></iframe>
-          </div>
+        <h1>Resume</h1>
+        <div class="content">
+          <iframe id="resume_view" src="https://docs.google.com/document/d/e/2PACX-1vSWlBCNnxE8mpmKv8aBahUDa9NUnho8tvLA1QWO7qw2PHSRHRByHlnI2_KzVYx32PbINR1YDE6Zs-HX/pub?embedded=true"></iframe>
+        </div>
       </div> -->
     </div>
     <div class="rising_button" id="back_to_top_block" onclick="goToTop()">
-        <p>Back to top:</p>
-        <img src="images/up_arrow.png" alt="">
+      <p>Back to top:</p>
+      <img src="images/up_arrow.png" alt="">
     </div>
   </div>
   <div class="konamiGame">
-      <div class="konami" id="bird">
-      </div>
-      <div class="konami pipe" id="pipeBottom">
-      </div>
-      <div class="konami pipe" id="pipeTop">
-      </div>
-      <div class="konami score">
-          <!-- <p id="label">Score:</p> -->
-          <p id="score">0</p>
-      </div>
+    <div class="konami" id="bird">
+    </div>
+    <div class="konami pipe" id="pipeBottom">
+    </div>
+    <div class="konami pipe" id="pipeTop">
+    </div>
+    <div class="konami score">
+      <p id="score">0</p>
+    </div>
   </div>
   <div class="pongGame">
-      <div class="pong" id="ball">
-      </div>
-      <div class="pong pipe" id="user">
-      </div>
-      <div class="pong pipe" id="cpu">
-      </div>
-      <div class="pong score">
-          <p id="score">0</p>
-      </div>
+    <div class="pong" id="ball">
+    </div>
+    <div class="pong pipe" id="user">
+    </div>
+    <div class="pong pipe" id="cpu">
+    </div>
+    <div class="pong score">
+      <p id="score">0</p>
+    </div>
   </div>
   <script src="scripts/base.js" charset="utf-8"></script>
   <script src="scripts/navbar.js" charset="utf-8"></script>
   <script src="scripts/toTop_button.js" charset="utf-8"></script>
   <script src="scripts/main.js" charset="utf-8"></script>
+  <script src="scripts/comments.js" charset="utf-8"></script>
   <script src="scripts/konami.js" charset="utf-8"></script>
   <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer>
   </script>
