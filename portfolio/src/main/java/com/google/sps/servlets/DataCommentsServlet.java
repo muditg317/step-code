@@ -25,6 +25,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,48 +42,64 @@ public class DataCommentsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String urlKey = request.getParameter("key");
-    long id;
-    Key commentEntityKey = null;
-    if (urlKey != null) {
-      id = Long.parseLong(urlKey);
-      commentEntityKey = KeyFactory.createKey("Comment", id);
-    }
+    Key mostRecentCommentKey = getKeyFromRequest(request, "Comment");
 
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
-    List<String> comments = new ArrayList<>();
-    boolean foundUrlKeyBasedComment = commentEntityKey == null;
-    String maxCommentParam = request.getParameter("maxComments");
-    int maxComments =
-        maxCommentParam != null ? Integer.parseInt(maxCommentParam) : Integer.MAX_VALUE;
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(maxComments))) {
-      String comment = (String) entity.getProperty("comment");
-      comments.add(comment);
-      if (!foundUrlKeyBasedComment && entity.getKey().equals(commentEntityKey)) {
-        foundUrlKeyBasedComment = true;
-      }
-      if (comments.size() >= maxComments) {
-        break;
-      }
-    }
-    if (!foundUrlKeyBasedComment) {
-      Entity urlBasedComment;
-      try {
-        urlBasedComment = datastore.get(commentEntityKey);
-        comments.add(0, (String) urlBasedComment.getProperty("comment"));
-      } catch (EntityNotFoundException e) {
-      }
-    }
+    
+    int maxComments = getMaxComments(request);
+    
+    List<Comment> commentEntities = getCommentsFromQuery(results, maxComments);
+    
+    ensureIdPresentInEntityList(comments, mostRecentCommentKey);
+    boolean foundUrlKeyBasedComment = comments.stream().anyMatch(comment -> comment.id == );
+    
     while (comments.size() > maxComments) {
       comments.remove(maxComments);
     }
 
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(comments));
+  }
+
+  private Key getKeyFromRequest(HttpServletRequest request, String kind) {
+    String urlKey = request.getParameter("key");
+    long id;
+    Key entityKey = null;
+    if (urlKey != null) {
+      id = Long.parseLong(urlKey);
+      entityKey = KeyFactory.createKey(kind, id);
+    }
+    return entityKey;
+  }
+  private int getMaxComments(HttpServletRequest request) {
+    String maxCommentParam = request.getParameter("maxComments");
+    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : Integer.MAX_VALUE;
+  }
+  private List<Comment> getCommentsFromQuery(PreparedQuery results, int maxComments) {
+    List<Comment> comments = new ArrayList<>(maxComments);
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(maxComments))) {
+      String comment = (String) entity.getProperty("comment");
+      long id = (long) entity.getKey().getId();
+      comments.add(new Comment(comment, id));
+      if (comments.size() >= maxComments) {
+        break;
+      }
+    }
+    return comments;
+  }
+  private void ensureIdPresentInCommentList(List<Comment> comments, Key requiredKey) {
+    if (comments.stream().noneMatch(comment -> comment.id == requiredKey.getId())) {
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      try {
+        Entity keyBasedEntity = datastore.get(requiredKey);
+        String comment = (String) entity.getProperty("comment");
+        long id = (long) entity.getKey().getId();
+        comments.add(new Comment(comment, id));
+      } catch (EntityNotFoundException e) {
+      }
+    }
   }
 
   @Override
