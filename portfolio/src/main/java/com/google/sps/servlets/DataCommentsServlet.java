@@ -98,14 +98,11 @@ public class DataCommentsServlet extends HttpServlet {
       key = commentEntity.getKey();
     }
     response.setContentType("application/json;");
-    // String redirectURL = "/data-comments";
     if (key != null) {
-      // redirectURL += "?key="+key.getId();
       response.getWriter().println("{\"key\": " + key.getId() + "}");
     } else {
       response.getWriter().println("{}");
     }
-    // response.sendRedirect(redirectURL);
   }
 
   @Override
