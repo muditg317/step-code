@@ -47,14 +47,15 @@ public class DataCommentsServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    
+
     int maxComments = getMaxComments(request);
-    
-    List<Comment> commentEntities = getCommentsFromQuery(results, maxComments);
-    
-    ensureIdPresentInEntityList(comments, mostRecentCommentKey);
-    boolean foundUrlKeyBasedComment = comments.stream().anyMatch(comment -> comment.id == );
-    
+
+    List<Comment> comments = getCommentsFromQuery(results, maxComments);
+
+    if (mostRecentCommentKey != null) {
+      ensureIdPresentInCommentList(comments, mostRecentCommentKey);
+    }
+
     while (comments.size() > maxComments) {
       comments.remove(maxComments);
     }
@@ -73,10 +74,12 @@ public class DataCommentsServlet extends HttpServlet {
     }
     return entityKey;
   }
+
   private int getMaxComments(HttpServletRequest request) {
     String maxCommentParam = request.getParameter("maxComments");
     return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : Integer.MAX_VALUE;
   }
+
   private List<Comment> getCommentsFromQuery(PreparedQuery results, int maxComments) {
     List<Comment> comments = new ArrayList<>(maxComments);
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(maxComments))) {
@@ -89,13 +92,14 @@ public class DataCommentsServlet extends HttpServlet {
     }
     return comments;
   }
+
   private void ensureIdPresentInCommentList(List<Comment> comments, Key requiredKey) {
-    if (comments.stream().noneMatch(comment -> comment.id == requiredKey.getId())) {
+    if (comments.stream().noneMatch(comment -> comment.getKeyId() == requiredKey.getId())) {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       try {
         Entity keyBasedEntity = datastore.get(requiredKey);
-        String comment = (String) entity.getProperty("comment");
-        long id = (long) entity.getKey().getId();
+        String comment = (String) keyBasedEntity.getProperty("comment");
+        long id = (long) keyBasedEntity.getKey().getId();
         comments.add(new Comment(comment, id));
       } catch (EntityNotFoundException e) {
       }

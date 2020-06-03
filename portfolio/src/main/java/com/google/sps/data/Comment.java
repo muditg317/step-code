@@ -17,4 +17,12 @@ public class Comment {
     this.comment = comment;
     this.keyId = keyId;
   }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public long getKeyId() {
+    return keyId;
+  }
 }

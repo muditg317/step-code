@@ -50,12 +50,13 @@ const loadComments = async (recentPostKeyObject) => {
         })
     );
   let text = await response.text();
+  console.log(text);
   let comments = JSON.parse(text);
   commentList.innerHTML = "";
   comments.forEach(comment => {
     let p = document.createElement("p");
     p.classList.add("comment");
-    p.innerText = comment;
+    p.innerText = comment.comment;
     commentList.appendChild(p);
   });
 };
