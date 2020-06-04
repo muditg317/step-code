@@ -4,19 +4,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>Mudit Gupta</title>
-	<link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
-	<link rel="stylesheet" href="styles/base.css">
-	<link rel="stylesheet" href="styles/header.css">
-	<link rel="stylesheet" href="styles/navbar.css">
-	<link rel="stylesheet" href="styles/konami.css">
-	<link rel="stylesheet" href="styles/home.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png">
+	<link rel="stylesheet" type="text/css" href="static/styles/base.css">
+	<link rel="stylesheet" type="text/css" href="static/styles/header.css">
+	<link rel="stylesheet" type="text/css" href="static/styles/navbar.css">
+	<link rel="stylesheet" type="text/css" href="static/styles/konami.css">
+	<link rel="stylesheet" type="text/css" href="static/styles/home.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 	<header>
 		<div id="top_nav" class="nav_bar">
-			<img class="logo" src="images/logo.png" alt="" onclick="navToSection('#top')">
+			<img class="logo" src="static/images/logo.png" alt="" onclick="navToSection('#top')">
 			<a class="nav_bar_item" id="nav_who_am_i"
 				onclick="navToSection('#who_am_i')"><i class="fa fa-fw fa-user"></i> Who Am I?</a>
 			<a class="nav_bar_item" id="nav_projects"
@@ -25,16 +25,14 @@
 				Gallery</a>
 			<a class="nav_bar_item" id="nav_find_me_online"
 				onclick="navToSection('#find_me_online')"><i class="fa fa-fw fa-globe"></i> Find Me Online</a>
-			<!-- <a class="nav_bar_item" id="nav_resume" onclick="navToSection('#resume')"><i class="fa fa-fw fa-file"></i>
-				Resume</a> -->
 			<a class="nav_bar_item" id="nav_comments" onclick="navToSection('#comments')"><i class="fa fa-fw fa-file"></i>
 				Comment</a>
 			<a class="menu" href="javascript:void(0);" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
 		</div>
 		<div class="title_block" id="top">
-			<img id="title_bkgd_img" src="images/homies low res.png" alt="blur friends"/>
+			<img id="title_bkgd_img" src="static/images/homies low res.png" alt="blur friends"/>
 			<div class="title_block_inner">
-				<img id="title_image" src="images/homies low res.png" alt="friends"/>
+				<img id="title_image" src="static/images/homies low res.png" alt="friends"/>
 				<div class="title_content">
 					<h1 class="title_content_item">
 						<center id="title">Mudit Gupta</center>
@@ -51,7 +49,7 @@
 				<h1>Who Am I?</h1>
 				<div class="content">
 					<p class="about-me-text">
-						<img class="inline-pic-left about-me-pic" src="images/im cool.JPG" />
+						<img class="inline-pic-left about-me-pic" src="static/images/im cool.JPG" />
             Hey! I'm Mudit Gupta. I was born in Georgia on March 17, 2001, and I've been living in the suburbs my whole life.
             I grew up with the gift of my parents having hundreds of friends. All the family around me molded me into the
             fun-loving person I am today. I bring my goofy (slightly immature) antics into every room I enter, and as I got older,
@@ -60,7 +58,7 @@
             someone else work on something of their own.
           </p>
           <p class="about-me-text">
-            <img class="inline-pic-right about-me-pic" src="images/senior pic.JPG" />
+            <img class="inline-pic-right about-me-pic" src="static/images/senior pic.JPG" />
             In highschool, my enthusiasm for robotics became my personality. I spent all four years invested in my robotics team,
             and we reached the international competition twice! After graduating from GSMST, I became a student at Georgia Tech.
             I'm working towards a Computer Science degree, focusing on artificial intelligence and modeling/simulation.
@@ -81,8 +79,8 @@
 			<div class="content_block" id="gallery">
 				<h1>Gallery</h1>
 				<div class="content" id="gallery-container">
-					<img src="images/IMG_5778.JPG" />
-					<img src="images/stuco retreat.jpeg" />
+					<img src="static/images/IMG_5778.JPG" />
+					<img src="static/images/stuco retreat.jpeg" />
         </div>
       </div>
       <div class="content_block" id="find_me_online">
@@ -110,16 +108,10 @@
           <button onclick="deleteComments()">Delete Comments</button>
         </div>
       </div>
-      <!-- <div class="content_block" id="resume">
-        <h1>Resume</h1>
-        <div class="content">
-          <iframe id="resume_view" src="https://docs.google.com/document/d/e/2PACX-1vSWlBCNnxE8mpmKv8aBahUDa9NUnho8tvLA1QWO7qw2PHSRHRByHlnI2_KzVYx32PbINR1YDE6Zs-HX/pub?embedded=true"></iframe>
-        </div>
-      </div> -->
     </div>
     <div class="rising_button" id="back_to_top_block" onclick="goToTop()">
       <p>Back to top:</p>
-      <img src="images/up_arrow.png" alt="">
+      <img src="static/images/up_arrow.png" alt="">
     </div>
   </div>
   <div class="konamiGame">
@@ -144,12 +136,12 @@
       <p id="score">0</p>
     </div>
   </div>
-  <script src="scripts/base.js" charset="utf-8"></script>
-  <script src="scripts/navbar.js" charset="utf-8"></script>
-  <script src="scripts/toTop_button.js" charset="utf-8"></script>
-  <script src="scripts/main.js" charset="utf-8"></script>
-  <script src="scripts/comments.js" charset="utf-8"></script>
-  <script src="scripts/konami.js" charset="utf-8"></script>
+  <script src="static/scripts/base.js" charset="utf-8"></script>
+  <script src="static/scripts/navbar.js" charset="utf-8"></script>
+  <script src="static/scripts/toTop_button.js" charset="utf-8"></script>
+  <script src="static/scripts/main.js" charset="utf-8"></script>
+  <script src="static/scripts/comments.js" charset="utf-8"></script>
+  <script src="static/scripts/konami.js" charset="utf-8"></script>
   <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer>
   </script>
   <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
