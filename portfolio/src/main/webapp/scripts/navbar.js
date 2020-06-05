@@ -18,28 +18,28 @@ const responsiveNav = () => {
 }
 
 const navToSection = (elementSelector) => {
-    jumpToSection(elementSelector);
-    top_nav.className = "nav_bar";
+  jumpToSection(elementSelector);
+  top_nav.className = "nav_bar";
 }
 
 const windowResizeHandler_NAV = () => {
-    if (window.innerWidth > 700) {
-        top_nav.className = "nav_bar";
-    }
+  if (window.innerWidth > 700) {
+    top_nav.className = "nav_bar";
+  }
 }
 
 window.addEventListener("resize", windowResizeHandler_NAV);
 
 const navBarHeight = document.getElementById("top_nav").computedStyleMap().get("min-height")["value"];
 const jumpToSection = (elementSelector) => {
-    element = document.querySelector(elementSelector);
-    const elemRect = element.getBoundingClientRect();
-    scrollBy(0,elemRect.top-navBarHeight);
+  element = document.querySelector(elementSelector);
+  const elemRect = element.getBoundingClientRect();
+  scrollBy(0,elemRect.top-navBarHeight);
 }
 
 const docClickHandler_NAV = (event) => {
-    if (!top_nav.contains(event.target)) {
-        top_nav.classList.remove("responsive");
-    }
+  if (!top_nav.contains(event.target)) {
+    top_nav.classList.remove("responsive");
+  }
 };
 document.addEventListener("click", docClickHandler_NAV);
