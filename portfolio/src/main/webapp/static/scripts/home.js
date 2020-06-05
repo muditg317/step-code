@@ -1,26 +1,4 @@
-const title_block = document.querySelector(".title_block");
-const title_block_inner = document.querySelector(".title_block_inner");
-const title_img = document.querySelector("#title_image");
-const main_content = document.querySelector(".mainContent");
-const setTitleImageWidth = () => {
-  if (title_block && title_img) {
-    let img_width = title_img.naturalWidth*500/title_img.naturalHeight;
-    let page_width = parseInt(window.getComputedStyle(title_block).width);
-    title_block_inner.style.width = Math.min(img_width,page_width)+"px";
-    main_content.style.maxWidth = img_width+"px";
-  }
-}
-const windowResizeHandler_MAIN = () => {
-  setTitleImageWidth();
-}
-window.addEventListener("resize", windowResizeHandler_MAIN);
-
-const domContentLoadedHandler_MAIN = () => {
-  setTitleImageWidth();
-}
-document.addEventListener("DOMContentLoaded", domContentLoadedHandler_MAIN);
-
-const windowLoadHandler_MAIN = () => {
+const windowLoadHandler_HOME = () => {
   setTitleImageWidth();
   setTimeout(() => {
     document.querySelector(".LI-profile-pic").src =
@@ -28,7 +6,7 @@ const windowLoadHandler_MAIN = () => {
         + "0?e=1596672000&v=beta&t=EiqH2TCfBNn58UQGlNgMf8MXUSLj0YTAqRDYsMEoefc";
   }, 1000);
 }
-window.addEventListener("load",windowLoadHandler_MAIN);
+window.addEventListener("load",windowLoadHandler_HOME);
 
 let content_blocks = document.querySelectorAll(".content_block");
 

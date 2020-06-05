@@ -18,7 +18,10 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
 import com.hubspot.jinjava.JinjavaConfig;
+import com.hubspot.jinjava.loader.FileLocator;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +44,17 @@ public class MainServlet extends HttpServlet {
 
     JinjavaConfig config = new JinjavaConfig();
     Jinjava jinjava = new Jinjava(config);
-    // jinjava.setResourceLocator(new FileLocator(new File(".")));
+    try {
+      jinjava.setResourceLocator(
+          new FileLocator(new File(this.getClass().getResource("/templates").toURI())));
+    } catch (URISyntaxException e) {
+      System.err.println("templates dir not found!");
+    }
+
     Map<String, Object> context = new HashMap<>();
 
     String template =
-        Resources.toString(this.getClass().getResource("/templates/index.html"), Charsets.UTF_8);
+        Resources.toString(this.getClass().getResource("/templates/home.html"), Charsets.UTF_8);
 
     // response.getWriter().println(this.getClass().getResource("/templates/index.html"));
     // new File(System.getProperty("user.dir") +

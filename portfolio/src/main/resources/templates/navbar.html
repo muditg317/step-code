@@ -1,0 +1,21 @@
+{% set styles = styles.append(
+    "static/styles/navbar.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  ) %}
+<div id="top_nav" class="nav_bar">
+  <img class="logo" src="static/images/logo.png" alt="" onclick="navToSection('#top')">
+  <a class="nav_bar_item" id="nav_who_am_i"
+    onclick="navToSection('#who_am_i')"><i class="fa fa-fw fa-user"></i> Who Am I?</a>
+  <a class="nav_bar_item" id="nav_projects"
+    onclick="navToSection('#projects')"><i class="fa fa-fw fa-book"></i> Projects</a>
+  <a class="nav_bar_item" id="nav_gallery" onclick="navToSection('#gallery')"><i class="fa fa-fw fa-book"></i>
+    Gallery</a>
+  <a class="nav_bar_item" id="nav_find_me_online"
+    onclick="navToSection('#find_me_online')"><i class="fa fa-fw fa-globe"></i> Find Me Online</a>
+  <a class="nav_bar_item" id="nav_comments" onclick="navToSection('#comments')"><i class="fa fa-fw fa-file"></i>
+    Comment</a>
+  <a class="menu" href="javascript:void(0);" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
+</div>
+{% set scripts = scripts.append(
+    "static/scripts/navbar.js"
+  ) %}
