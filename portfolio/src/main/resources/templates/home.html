@@ -13,7 +13,15 @@
 {% endblock %}
 
 {% block header %}
+  {% set nav_items = [
+      ["who_am_i", "user", "Who Am I?"],
+      ["projects", "book", "Projects"],
+      ["gallery", "picture-o", "Gallery"],
+      ["find_me_online", "globe", "Find Me Online"],
+      ["comments", "file", "Comments"]
+    ] %}
   {% include "navbar.html" %}
+  {% set title_image = "static/images/homies low res.png" %}
   {% include "title_block.html" %}
 {% endblock %}
 
@@ -87,16 +95,11 @@
   </div>
 {% endblock %}
 
-{% set scripts = scripts.append(
-    "static/scripts/home.js",
-    "static/scripts/toTop_button.js",
-    "https://platform.linkedin.com/badges/js/profile.js",
-    "//cdn.jsdelivr.net/github-cards/latest/widget.js"
-  ) %}
 {% block scripts %}
   {{ super() }}
   {% set scripts = [
       "static/scripts/home.js",
+      "static/scripts/comments.js",
       "static/scripts/toTop_button.js",
       "https://platform.linkedin.com/badges/js/profile.js",
       "//cdn.jsdelivr.net/github-cards/latest/widget.js"
