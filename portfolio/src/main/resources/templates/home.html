@@ -2,9 +2,15 @@
 
 {% block title %}Mudit Gupta{% endblock %}
 
-{% do styles.append(
-    "static/styles/home.css"
-  ) %}
+{% block styles %}
+  {{ super() }}
+  {% set styles = [
+      "static/styles/home.css"
+    ] %}
+  {% for style in styles %}
+    <link rel="stylesheet" type="text/css" href={{ style }}>
+  {% endfor %}
+{% endblock %}
 
 {% block header %}
   {% include "navbar.html" %}
@@ -87,3 +93,15 @@
     "https://platform.linkedin.com/badges/js/profile.js",
     "//cdn.jsdelivr.net/github-cards/latest/widget.js"
   ) %}
+{% block scripts %}
+  {{ super() }}
+  {% set scripts = [
+      "static/scripts/home.js",
+      "static/scripts/toTop_button.js",
+      "https://platform.linkedin.com/badges/js/profile.js",
+      "//cdn.jsdelivr.net/github-cards/latest/widget.js"
+    ]%}
+  {% for script in scripts %}
+    <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+  {% endfor %}
+{% endblock %}

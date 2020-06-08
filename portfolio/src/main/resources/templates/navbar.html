@@ -1,7 +1,10 @@
-{% set styles = styles.append(
+{% set styles = [
     "static/styles/navbar.css",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  ) %}
+  ] %}
+{% for style in styles %}
+  <link rel="stylesheet" type="text/css" href={{ style }}>
+{% endfor %}
 <div id="top_nav" class="nav_bar">
   <img class="logo" src="static/images/logo.png" alt="" onclick="navToSection('#top')">
   <a class="nav_bar_item" id="nav_who_am_i"
@@ -16,6 +19,9 @@
     Comment</a>
   <a class="menu" href="javascript:void(0);" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
 </div>
-{% set scripts = scripts.append(
+{% set scripts = [
     "static/scripts/navbar.js"
-  ) %}
+  ] %}
+{% for script in scripts %}
+  <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+{% endfor %}

@@ -1,6 +1,9 @@
-{% set styles = styles.append(
-    "static/styles/title_block.css",
- ) %}
+{% set styles = [
+    "static/styles/title_block.css"
+ ] %}
+{% for style in styles %}
+ <link rel="stylesheet" type="text/css" href={{ style }}>
+{% endfor %}
 <div class="title_block" id="top">
   <img id="title_bkgd_img" src="static/images/homies low res.png" alt="blur friends"/>
   <div class="title_block_inner">
@@ -14,6 +17,9 @@
     </div>
   </div>
 </div>
-{% set scripts = scripts.append(
+{% set scripts = [
     "static/scripts/title_block.js"
-  ) %}
+  ] %}
+{% for script in scripts %}
+  <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+{% endfor %}

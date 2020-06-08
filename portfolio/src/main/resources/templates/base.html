@@ -7,10 +7,10 @@
 	{% block icon %}
     <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png">
   {% endblock %}
-  {% set styles = ["static/styles/base.css", "static/styles/konami.css"] %}
-  {% for style in styles %}
-    <link rel="stylesheet" type="text/css" href={{ style }}>
-  {% endfor }
+  {% block styles %}
+    <link rel="stylesheet" type="text/css" href="static/styles/base.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/konami.css">
+  {% endblock %}
 </head>
 
 <body>
@@ -44,10 +44,10 @@
       <p id="score">0</p>
     </div>
   </div>
-  {% set scripts = ["static/scripts/base.js", "static/scripts/konami.js"] %}
-  {% for script in scripts %}
-    <script charset="utf-8" type="text/javascript" src={{ script }}>
-  {% endfor %}
+  {% block scripts %}
+    <script charset="utf-8" type="text/javascript" src="static/scripts/base.js"></script>
+    <script charset="utf-8" type="text/javascript" src="static/scripts/konami.js"></script>
+  {% endblock %}
 </body>
 
 </html>
