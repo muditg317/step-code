@@ -36,7 +36,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that handles comments data */
 @WebServlet("/data-comments")
 public class DataCommentsServlet extends HttpServlet {
 

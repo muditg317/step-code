@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns main page content */
 @WebServlet(urlPatterns = {"/", "/main"})
 public class MainServlet extends HttpServlet {
 
@@ -55,10 +54,6 @@ public class MainServlet extends HttpServlet {
 
     String template =
         Resources.toString(this.getClass().getResource("/templates/home.html"), Charsets.UTF_8);
-
-    // response.getWriter().println(this.getClass().getResource("/templates/index.html"));
-    // new File(System.getProperty("user.dir") +
-    // "/resources/templates/index.html").toURI().toURL());
 
     String renderedTemplate = jinjava.render(template, context);
 

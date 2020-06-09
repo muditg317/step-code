@@ -1,45 +1,36 @@
-// const homeButton = document.querySelector(".logo");
-// homeButton.addEventListener("click", (event) => {
-//     if (window.location.pathname !== "/") {
-//         window.location.href = window.location.origin;
-//     }
-//     window.location.hash = "";
-//     window.scrollTo(0,0);
-// });
-
-const top_nav = document.getElementById("top_nav");
+const topNav = document.getElementById("top-nav");
 
 const responsiveNav = () => {
-  if (top_nav.className === "nav_bar") {
-    top_nav.className += " responsive";
+  if (topNav.classList.contains("responsive")){
+    topNav.classList.remove("responsive");
   } else {
-    top_nav.className = "nav_bar";
+    topNav.classList.add("responsive");
   }
 }
 
 const navToSection = (elementSelector) => {
   jumpToSection(elementSelector);
-  top_nav.className = "nav_bar";
+  topNav.classList.remove("responsive");
 }
 
-const windowResizeHandler_NAV = () => {
+const windowResizeHandlerNavBar = () => {
   if (window.innerWidth > 700) {
-    top_nav.className = "nav_bar";
+    topNav.classList.remove("responsive");
   }
 }
 
-window.addEventListener("resize", windowResizeHandler_NAV);
+window.addEventListener("resize", windowResizeHandlerNavBar);
 
-const navBarHeight = document.getElementById("top_nav").computedStyleMap().get("min-height")["value"];
+const navBarHeight = document.getElementById("top-nav").computedStyleMap().get("min-height")["value"];
 const jumpToSection = (elementSelector) => {
   element = document.querySelector(elementSelector);
   const elemRect = element.getBoundingClientRect();
   scrollBy(0,elemRect.top-navBarHeight);
 }
 
-const docClickHandler_NAV = (event) => {
-  if (!top_nav.contains(event.target)) {
-    top_nav.classList.remove("responsive");
+const docClickHandlerNavBar = (event) => {
+  if (!topNav.contains(event.target)) {
+    topNav.classList.remove("responsive");
   }
 };
-document.addEventListener("click", docClickHandler_NAV);
+document.addEventListener("click", docClickHandlerNavBar);
