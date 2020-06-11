@@ -1,4 +1,4 @@
-.content_block {
+.content-block {
   display: flex;
   flex-flow: column nowrap;
   min-height: 30em;
@@ -8,19 +8,19 @@
   background-position: center;
 }
 
-.content_block > h1 {
+.content-block > h1 {
   align-self: center;
 }
 
-.rising_button {
+.rising-button {
   box-shadow: 5px 5px 2px grey;
 }
 
-.rising_button:hover {
+.rising-button:hover {
   box-shadow: 7px 7px 4px grey;
 }
 
-#back_to_top_block {
+#back-to-top-block {
   display: none;
   position: fixed;
   right: 20px;
@@ -37,12 +37,12 @@
   border-radius: 0.5em;
 }
 
-#back_to_top_block:hover {
+#back-to-top-block:hover {
   right: 22px;
   bottom: 22px;
 }
 
-#back_to_top_block > p {
+#back-to-top-block > p {
   text-align: center;
   margin: 0px;
   margin-bottom: 10px;
@@ -86,14 +86,14 @@
   margin: 2em;
 }
 
-.content_block#resume .content {
+.content-block#resume .content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#resume_view {
+#resume-view {
   width: 720px;
   height: 1145px;
   overflow: hidden;

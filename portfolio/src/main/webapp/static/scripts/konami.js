@@ -1,10 +1,12 @@
 const recentKeys = [];
-const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "a", "b"];
-const endKonamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "z", "y"];
+const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "a", "b"];
+const endKonamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "z", "y"];
 let konami = false;
 let doneKonami = false;
 
-const konamiGame = document.querySelector(".konamiGame");
+const konamiGame = document.querySelector(".konami-game");
 let gameInterval = 0;
 const frameTime = 20;
 const frameCalibration = 50;
@@ -31,8 +33,8 @@ let birdY = gameHeight/2-birdSize/2;
 let birdVX = 0;
 let birdVY = 0;
 
-const pipeBottom = document.querySelector("#pipeBottom");
-const pipeTop = document.querySelector("#pipeTop");
+const pipeBottom = document.querySelector("#pipe-bottom");
+const pipeTop = document.querySelector("#pipe-top");
 let pipeInterval = 0;
 let pipeX = 0;
 let pipeY = 0;
@@ -68,7 +70,8 @@ const resetBird = () => {
 
 const resetPipes = () => {
   pipeX = gameWidth-pipeWidth;
-  pipeY = Math.floor(Math.random()*(gameHeight-pipeSpace+1))+(pipeSpace/2.0);
+  pipeY = Math.floor(Math.random() * (gameHeight - pipeSpace + 1))
+      + (pipeSpace/2.0);
 };
 
 const resetKonamiGame = () => {
@@ -77,7 +80,7 @@ const resetKonamiGame = () => {
   setBirdPos();
   setPipes();
   score = 0;
-  scoreDisplay.innerHTML=score;
+  scoreDisplay.innerHTML = score;
   birdInterval = setInterval(() => {
     birdX += birdVX;
     birdY -= birdVY;
@@ -93,7 +96,7 @@ const resetKonamiGame = () => {
     if(pipeX < birdStart-20) {
       resetPipes();
       score+=1;
-      scoreDisplay.innerHTML=score;
+      scoreDisplay.innerHTML = score;
     }
     setPipes();
   },frameTime);
@@ -131,18 +134,6 @@ const endKonami = () => {
   }
 };
 
-const pongCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
-
-const endPongCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "y", "z"];
-
-
-const executePong = () => {
-
-};
-const endPong = () => {
-
-};
-
 const checkCode = (code,result) => {
   if(recentKeys.length<code.length) {
     return;
@@ -158,8 +149,6 @@ const checkCode = (code,result) => {
 const checkCodes = () => {
   checkCode(konamiCode,executeKonami);
   checkCode(endKonamiCode,endKonami);
-  checkCode(pongCode,executePong);
-  checkCode(endPongCode,endPong);
 };
 
 window.addEventListener('keydown', function (event) {

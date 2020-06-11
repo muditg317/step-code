@@ -1,4 +1,4 @@
-.nav_bar {
+.nav-bar {
   overflow: hidden;
   background-color: #000;
   display: flex;
@@ -11,14 +11,14 @@
   z-index: 5;
 }
 
-.nav_bar .logo {
+.nav-bar .logo {
   display: inline-block;
   height: 40px;
   padding: 5px 14px;
 }
 
 /* Style the links inside the navigation bar */
-.nav_bar a {
+.nav-bar a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -27,58 +27,58 @@
   /* font-size: 17px; */
 }
 
-.nav_bar a.menu {
+.nav-bar a.menu {
   display: none;
 }
 
 /* Change the color of links on hover */
-.nav_bar a:hover {
+.nav-bar a:hover {
   background-color: #ddd;
   color: black;
 }
 /* Add a color to the active/current link */
-.nav_bar a.active {
+.nav-bar a.active {
   background-color: #4CAF50;
   color: white;
 }
-.nav_bar a.active:hover {
+.nav-bar a.active:hover {
   background-color: #72c475;
 }
 
-.nav_bar .logo {
+.nav-bar .logo {
   filter: invert(1);
   /* padding-top: 2px;
   height: 44px; */
 }
-.nav_bar .logo:hover{
+.nav-bar .logo:hover{
   background-color: #ddd;
   filter: invert(0);
 }
 
 @media screen and (max-width: 700px) {
-  .nav_bar {
+  .nav-bar {
     justify-content: space-between;
   }
-  .nav_bar *:not(:first-child) {
+  .nav-bar *:not(:first-child) {
     display: none;
   }
-  .nav_bar a.menu {
+  .nav-bar a.menu {
     display: initial;
   }
 
-  .nav_bar.responsive {
+  .nav-bar.responsive {
     flex-direction: column;
     align-items: flex-start;
   }
-  .nav_bar.responsive .logo {
+  .nav-bar.responsive .logo {
     padding-top: 5px;
   }
-  .nav_bar.responsive a:not(:last-child) {
+  .nav-bar.responsive a:not(:last-child) {
     display: initial;
     width: inherit;
     text-align: left;
   }
-  .nav_bar.responsive a.menu {
+  .nav-bar.responsive a.menu {
     position: absolute;
     right: 0;
     top: 0;

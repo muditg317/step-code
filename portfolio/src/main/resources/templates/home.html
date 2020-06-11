@@ -14,19 +14,19 @@
 
 {% block header %}
   {% set nav_items = [
-      ["who_am_i", "user", "Who Am I?"],
+      ["who-am-i", "user", "Who Am I?"],
       ["projects", "book", "Projects"],
       ["gallery", "picture-o", "Gallery"],
-      ["find_me_online", "globe", "Find Me Online"],
+      ["find-me-online", "globe", "Find Me Online"],
       ["comments", "file", "Comments"]
     ] %}
   {% include "navbar.html" %}
   {% set title_image = "static/images/homies low res.png" %}
-  {% include "title_block.html" %}
+  {% include "title-block.html" %}
 {% endblock %}
 
 {% block main_content %}
-  <div class="content_block" id="who_am_i">
+  <div class="content-block" id="who-am-i">
     <h1>Who Am I?</h1>
     <div class="content">
       <p class="about-me-text">
@@ -46,7 +46,7 @@
       </p>
     </div>
   </div>
-  <div class="content_block" id="projects">
+  <div class="content-block" id="projects">
     <h1>Projects</h1>
     <div class="content">
       <ul>
@@ -57,17 +57,17 @@
       </ul>
     </div>
   </div>
-  <div class="content_block" id="gallery">
+  <div class="content-block" id="gallery">
     <h1>Gallery</h1>
     <div class="content" id="gallery-container">
       <img src="static/images/IMG_5778.JPG" />
       <img src="static/images/stuco retreat.jpeg" />
     </div>
   </div>
-  <div class="content_block" id="find_me_online">
+  <div class="content-block" id="find-me-online">
     <h1>Find Me Online</h1>
     <div class="content" id="badge-container">
-      <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US"
+      <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en-US"
           data-type="horizontal" data-theme="light" data-vanity="muditg317" data-uid="173090">
         <a class="LI-simple-link" href="https://www.linkedin.com/in/muditg317?trk=profile-badge">
           Mudit Gupta
@@ -77,19 +77,19 @@
           data-theme="default"></div>
     </div>
   </div>
-  <div class="content_block" id="comments">
+  <div class="content-block" id="comments">
     <h1>Comments</h1>
     <div class="content" id="comment-container">
       <form onsubmit="postComment(); return false">
         <input type="text" id="comment-text" />
         <input type="submit" value="Post comment!" />
-        <input onchange="loadComments()" type="number" id="num-comments" name="numComments" min="1" max="10000" required="" value="100">
+        <input onchange="loadComments()" type="number" id="num-comments" name="num-comments" min="1" max="10000" required="" value="100">
       </form>
       <div id="comment-list"></div>
       <button onclick="deleteComments()">Delete Comments</button>
     </div>
   </div>
-  <div class="rising_button" id="back_to_top_block" onclick="goToTop()">
+  <div class="rising-button" id="back-to-top-block" onclick="goToTop()">
     <p>Back to top:</p>
     <img src="static/images/up_arrow.png" alt="">
   </div>
@@ -100,7 +100,7 @@
   {% set scripts = [
       "static/scripts/home.js",
       "static/scripts/comments.js",
-      "static/scripts/toTop_button.js",
+      "static/scripts/toTopButton.js",
       "https://platform.linkedin.com/badges/js/profile.js",
       "//cdn.jsdelivr.net/github-cards/latest/widget.js"
     ]%}
