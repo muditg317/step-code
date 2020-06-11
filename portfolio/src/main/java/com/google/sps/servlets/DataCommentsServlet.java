@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that handles comments data */
 @WebServlet("/data-comments")
 public class DataCommentsServlet extends HttpServlet {
 
@@ -77,7 +77,7 @@ public class DataCommentsServlet extends HttpServlet {
 
   private int getMaxComments(HttpServletRequest request) {
     String maxCommentParam = request.getParameter("maxComments");
-    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : Integer.MAX_VALUE;
+    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : 100;
   }
 
   private List<Comment> getCommentsFromQuery(PreparedQuery results, int maxComments) {

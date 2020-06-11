@@ -50,7 +50,7 @@ const loadComments = async (recentPostKeyObject) => {
         })
     );
   let text = await response.text();
-  console.log(text);
+  // console.log(text);
   let comments = JSON.parse(text);
   commentList.innerHTML = "";
   comments.forEach(comment => {

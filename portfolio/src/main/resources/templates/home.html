@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Mudit Gupta{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  {% set styles = [
+      "static/styles/home.css"
+    ] %}
+  {% for style in styles %}
+    <link rel="stylesheet" type="text/css" href={{ style }}>
+  {% endfor %}
+{% endblock %}
+
+{% block header %}
+  {% set nav_items = [
+      ["who_am_i", "user", "Who Am I?"],
+      ["projects", "book", "Projects"],
+      ["gallery", "picture-o", "Gallery"],
+      ["find_me_online", "globe", "Find Me Online"],
+      ["comments", "file", "Comments"]
+    ] %}
+  {% include "navbar.html" %}
+  {% set title_image = "static/images/homies low res.png" %}
+  {% include "title_block.html" %}
+{% endblock %}
+
+{% block main_content %}
+  <div class="content_block" id="who_am_i">
+    <h1>Who Am I?</h1>
+    <div class="content">
+      <p class="about-me-text">
+        <img class="inline-pic-left about-me-pic" src="static/images/im cool.JPG" />
+        Hey! I'm Mudit Gupta. I was born in Georgia on March 17, 2001, and I've been living in the suburbs my whole life.
+        I grew up with the gift of my parents having hundreds of friends. All the family around me molded me into the
+        fun-loving person I am today. I bring my goofy (slightly immature) antics into every room I enter, and as I got older,
+        I realized that the smiles I could put on other people's faces put a smile twice as big on mine. My passion for making
+        others happy has driven me throughout my life. When I'm not working on something of my own, I often find myself helping
+        someone else work on something of their own.
+      </p>
+      <p class="about-me-text">
+        <img class="inline-pic-right about-me-pic" src="static/images/senior pic.JPG" />
+        In highschool, my enthusiasm for robotics became my personality. I spent all four years invested in my robotics team,
+        and we reached the international competition twice! After graduating from GSMST, I became a student at Georgia Tech.
+        I'm working towards a Computer Science degree, focusing on artificial intelligence and modeling/simulation.
+      </p>
+    </div>
+  </div>
+  <div class="content_block" id="projects">
+    <h1>Projects</h1>
+    <div class="content">
+      <ul>
+        <li>VEX Robotics 2016-2019</li>
+        <li>Woke! app</li>
+        <li>Pineapple game</li>
+        <li>CS-Vis</li>
+      </ul>
+    </div>
+  </div>
+  <div class="content_block" id="gallery">
+    <h1>Gallery</h1>
+    <div class="content" id="gallery-container">
+      <img src="static/images/IMG_5778.JPG" />
+      <img src="static/images/stuco retreat.jpeg" />
+    </div>
+  </div>
+  <div class="content_block" id="find_me_online">
+    <h1>Find Me Online</h1>
+    <div class="content" id="badge-container">
+      <div class="LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US"
+          data-type="horizontal" data-theme="light" data-vanity="muditg317" data-uid="173090">
+        <a class="LI-simple-link" href="https://www.linkedin.com/in/muditg317?trk=profile-badge">
+          Mudit Gupta
+        </a>
+      </div>
+      <div class="github-card" data-github="muditg317" data-width="400" data-height=""
+          data-theme="default"></div>
+    </div>
+  </div>
+  <div class="content_block" id="comments">
+    <h1>Comments</h1>
+    <div class="content" id="comment-container">
+      <form onsubmit="postComment(); return false">
+        <input type="text" id="comment-text" />
+        <input type="submit" value="Post comment!" />
+        <input onchange="loadComments()" type="number" id="num-comments" name="numComments" min="1" max="10000" required="" value="100">
+      </form>
+      <div id="comment-list"></div>
+      <button onclick="deleteComments()">Delete Comments</button>
+    </div>
+  </div>
+  <div class="rising_button" id="back_to_top_block" onclick="goToTop()">
+    <p>Back to top:</p>
+    <img src="static/images/up_arrow.png" alt="">
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% set scripts = [
+      "static/scripts/home.js",
+      "static/scripts/comments.js",
+      "static/scripts/toTop_button.js",
+      "https://platform.linkedin.com/badges/js/profile.js",
+      "//cdn.jsdelivr.net/github-cards/latest/widget.js"
+    ]%}
+  {% for script in scripts %}
+    <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+  {% endfor %}
+{% endblock %}

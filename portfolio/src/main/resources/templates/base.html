@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	{% block icon %}
+    <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png">
+  {% endblock %}
+  {% block styles %}
+    <link rel="stylesheet" type="text/css" href="static/styles/base.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/konami.css">
+  {% endblock %}
+</head>
+
+<body>
+	<header>
+    {% block header %}{% endblock %}
+	</header>
+	<div class="mainBody">
+		<div class="mainContent">
+      {% block main_content %}{% endblock %}
+    </div>
+  </div>
+  <div class="konamiGame">
+    <div class="konami" id="bird">
+    </div>
+    <div class="konami pipe" id="pipeBottom">
+    </div>
+    <div class="konami pipe" id="pipeTop">
+    </div>
+    <div class="konami score">
+      <p id="score">0</p>
+    </div>
+  </div>
+  <div class="pongGame">
+    <div class="pong" id="ball">
+    </div>
+    <div class="pong pipe" id="user">
+    </div>
+    <div class="pong pipe" id="cpu">
+    </div>
+    <div class="pong score">
+      <p id="score">0</p>
+    </div>
+  </div>
+  {% block scripts %}
+    <script charset="utf-8" type="text/javascript" src="static/scripts/base.js"></script>
+    <script charset="utf-8" type="text/javascript" src="static/scripts/konami.js"></script>
+  {% endblock %}
+</body>
+
+</html>
