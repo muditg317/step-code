@@ -38,19 +38,20 @@ const deleteComments = async () => {
       method: "DELETE",
     });
   let text = await response.text();
-  // let data = JSON.parse(text);
   await sleep(500);
   loadComments();
 };
-const loadComments = async (recentPostKeyObject) => {
+const COMMENT_REFRESH_DELAY = 5000;
+let loadingTimeout;
+const loadComments = async (lastPostDatastoreKey) => {
+  clearTimeout(loadingTimeout); // clear timeout in case method was called externally (not from timeout)
   let response = await fetch(
       "/data-comments?" + xwwwfurlenc({
-          ...recentPostKeyObject,
+          ...lastPostDatastoreKey,
           maxComments: commentCountField.value
         })
     );
   let text = await response.text();
-  // console.log(text);
   let comments = JSON.parse(text);
   commentList.innerHTML = "";
   comments.forEach(comment => {
@@ -59,5 +60,6 @@ const loadComments = async (recentPostKeyObject) => {
     p.innerText = comment.comment;
     commentList.appendChild(p);
   });
+  loadingTimeout = setTimeout(loadComments, COMMENT_REFRESH_DELAY);
 };
 loadComments();

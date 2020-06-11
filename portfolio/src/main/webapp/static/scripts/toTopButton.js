@@ -4,7 +4,7 @@ const animationDistance = 125;
 const animationTime = 50;
 const timeStep = 1;
 
-const backToTopButton = document.getElementById("back_to_top_block");
+const backToTopButton = document.getElementById("back-to-top-block");
 let shown = document.body.scrollTop > minScrollHeight || document.documentElement.scrollTop > minScrollHeight;
 if (shown) {
   backToTopButton.style.display = "flex";

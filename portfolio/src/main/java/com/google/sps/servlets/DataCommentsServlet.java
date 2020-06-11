@@ -39,25 +39,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data-comments")
 public class DataCommentsServlet extends HttpServlet {
 
+  private static final int DEFAULT_MAX_COMMENTS = 100;
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Key mostRecentCommentKey = getKeyFromRequest(request, "Comment");
-
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-
-    int maxComments = getMaxComments(request);
-
-    List<Comment> comments = getCommentsFromQuery(results, maxComments);
-
-    if (mostRecentCommentKey != null) {
-      ensureIdPresentInCommentList(comments, mostRecentCommentKey);
-    }
-
-    while (comments.size() > maxComments) {
-      comments.remove(maxComments);
-    }
+    List<Comment> comments =
+        getComments(getMaxComments(request), getKeyFromRequest(request, "Comment"));
 
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(comments));
@@ -76,10 +63,13 @@ public class DataCommentsServlet extends HttpServlet {
 
   private int getMaxComments(HttpServletRequest request) {
     String maxCommentParam = request.getParameter("maxComments");
-    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : 100;
+    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : DEFAULT_MAX_COMMENTS;
   }
 
-  private List<Comment> getCommentsFromQuery(PreparedQuery results, int maxComments) {
+  private List<Comment> getComments(int maxComments, Key mostRecentCommentKey) {
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>(maxComments);
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(maxComments))) {
       String comment = (String) entity.getProperty("comment");
@@ -88,6 +78,13 @@ public class DataCommentsServlet extends HttpServlet {
       if (comments.size() >= maxComments) {
         break;
       }
+    }
+    if (mostRecentCommentKey != null) {
+      ensureIdPresentInCommentList(comments, mostRecentCommentKey);
+    }
+
+    while (comments.size() > maxComments) {
+      comments.remove(maxComments);
     }
     return comments;
   }
