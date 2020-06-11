@@ -85,6 +85,10 @@
 #badge-container > * {
   margin: 2em;
 }
+#instagram-badge {
+  width: 6.25em;
+  height: 6.25em;
+}
 
 .content-block#resume .content {
   display: flex;
