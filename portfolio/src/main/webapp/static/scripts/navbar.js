@@ -13,6 +13,10 @@ const navToSection = (elementSelector) => {
   topNav.classList.remove("responsive");
 }
 
+const goToPageSection = (pagePath, sectionID) => {
+  window.location = pagePath + "#"+sectionID;
+}
+
 const windowResizeHandlerNavBar = () => {
   if (window.innerWidth > 700) {
     topNav.classList.remove("responsive");

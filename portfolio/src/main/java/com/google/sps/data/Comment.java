@@ -1,21 +1,26 @@
 package com.google.sps.data;
 
-/**
- * Class representing a comment on the portfolio.
- *
- * <p>Note: The private variables in this class are converted into JSON.
- */
+import com.google.appengine.api.datastore.Entity;
+
 public class Comment {
 
-  /** List of descriptions of turns, e.g. "Player 1 took 3. New total: 18" */
   private String comment;
-
-  /** The total of the current turn. */
   private long keyId;
+  private long timestamp;
+  private String commenterName;
 
-  public Comment(String comment, long keyId) {
+  public Comment(String comment, long keyId, long timestamp, String commenterName) {
     this.comment = comment;
     this.keyId = keyId;
+    this.timestamp = timestamp;
+    this.commenterName = commenterName;
+  }
+
+  public Comment(Entity entity) {
+    this.comment = (String) entity.getProperty("comment");
+    this.keyId = (long) entity.getKey().getId();
+    this.timestamp = (long) entity.getProperty("timestamp");
+    this.commenterName = UserAccount.getUserNickname((String) entity.getProperty("userID"));
   }
 
   public String getComment() {

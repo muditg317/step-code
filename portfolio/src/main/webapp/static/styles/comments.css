@@ -1,0 +1,32 @@
+#auth-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12ch;
+  height: 12ch;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.content#comment-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#comment-list {
+    max-height: 30em;
+    overflow-y: scroll;
+    max-width: 700px;
+}
+
+.comment-info {
+  height: 1.5em;
+}
+.comment-info > .poster {
+  min-width: 10ch;
+  text-align: right;
+}
+.comment-info > .comment-text {
+  text-align: left;
+  padding-left: 1em;
+}

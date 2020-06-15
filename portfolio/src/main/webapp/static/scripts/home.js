@@ -16,7 +16,7 @@ window.addEventListener("load",windowLoadHandlerHome);
 let navBar = document.querySelector(".nav-bar#top-nav");
 
 function scrollEvent(scrollPos) {
-  let elementAtPageCenter = document.elementFromPoint(window.innerWidth/2,window.innerHeight/2);
+  let elementAtPageCenter = document.elementFromPoint(window.innerWidth/2,window.innerHeight*2/5);
   let block = elementAtPageCenter;
   if (scrollPos === 0) {
     block = null;

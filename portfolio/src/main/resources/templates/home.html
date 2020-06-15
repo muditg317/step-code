@@ -5,7 +5,8 @@
 {% block styles %}
   {{ super() }}
   {% set styles = [
-      "static/styles/home.css"
+      "static/styles/home.css",
+      "static/styles/toTopButton.css"
     ] %}
   {% for style in styles %}
     <link rel="stylesheet" type="text/css" href={{ style }}>
@@ -14,14 +15,25 @@
 
 {% block header %}
   {% set nav_items = [
-      ["who-am-i", "user", "Who Am I?"],
-      ["projects", "book", "Projects"],
-      ["gallery", "picture-o", "Gallery"],
-      ["find-me-online", "globe", "Find Me Online"],
-      ["comments", "file", "Comments"]
+      {
+        "baseURL": "/", "sectionID": "who-am-i", "iconLabel": "user", "text": "Who Am I?"
+      },
+      {
+        "baseURL": "/", "sectionID": "projects", "iconLabel": "book", "text": "Projects"
+      },
+      {
+        "baseURL": "/", "sectionID": "gallery", "iconLabel": "picture-o", "text": "Gallery"
+      },
+      {
+        "baseURL": "/", "sectionID": "find-me-online", "iconLabel": "globe", "text": "Find Me Online"
+      },
+      {
+        "baseURL": "/comments", "sectionID": "comments", "iconLabel": "file", "text": "Comments"
+      }
     ] %}
   {% include "navbar.html" %}
   {% set title_image = "static/images/homies low res.png" %}
+  {% set title = "Mudit Gupta" %}
   {% include "title-block.html" %}
 {% endblock %}
 
@@ -82,18 +94,6 @@
       </div>
     </div>
   </div>
-  <div class="content-block" id="comments">
-    <h1>Comments</h1>
-    <div class="content" id="comment-container">
-      <form onsubmit="postComment(); return false">
-        <input type="text" id="comment-text" />
-        <input type="submit" value="Post comment!" />
-        <input onchange="loadComments()" type="number" id="num-comments" name="num-comments" min="1" max="10000" required="" value="100">
-      </form>
-      <div id="comment-list"></div>
-      <button onclick="deleteComments()">Delete Comments</button>
-    </div>
-  </div>
   <div class="rising-button" id="back-to-top-block" onclick="goToTop()">
     <p>Back to top:</p>
     <img src="static/images/up_arrow.png" alt="">
@@ -104,7 +104,6 @@
   {{ super() }}
   {% set scripts = [
       "static/scripts/home.js",
-      "static/scripts/comments.js",
       "static/scripts/toTopButton.js",
       "https://platform.linkedin.com/badges/js/profile.js",
       "//cdn.jsdelivr.net/github-cards/latest/widget.js"

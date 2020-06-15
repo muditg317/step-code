@@ -23,7 +23,18 @@ const commentList = document.getElementById("comment-list");
 const commentBox = document.getElementById("comment-text");
 const commentCountField = document.getElementById("num-comments");
 const postComment = async () => {
-  let comment = commentBox.value;
+  const comment = commentBox.value;
+  let authResponse = await fetch(`/auth-url?entryURLPath=${window.location.pathname}`);
+  let authUrlData = await authResponse.json();
+  if (authUrlData.type !== "logout") {
+    commentBox.value = "You must have an account to post a comment";
+    setTimeout(() => {
+      commentBox.value = comment;
+    }, 1000);
+    let authButton = document.querySelector("authentication-button");
+    authButton && authButton.focus();
+    return;
+  }
   commentBox.value = "";
   let response = await fetch("/data-comments", {
       method: "POST",
@@ -55,10 +66,17 @@ const loadComments = async (lastPostDatastoreKey) => {
   let comments = JSON.parse(text);
   commentList.innerHTML = "";
   comments.forEach(comment => {
-    let p = document.createElement("p");
-    p.classList.add("comment");
-    p.innerText = comment.comment;
-    commentList.appendChild(p);
+    let poster = document.createElement("td");
+    poster.classList.add("poster");
+    poster.innerText = `${comment.commenterName}:`;
+    let commentText = document.createElement("td");
+    commentText.classList.add("comment-text");
+    commentText.innerText = comment.comment;
+    let commentInfo = document.createElement("tr");
+    commentInfo.classList.add("comment-info");
+    commentInfo.appendChild(poster);
+    commentInfo.appendChild(commentText);
+    commentList.appendChild(commentInfo);
   });
   loadingTimeout = setTimeout(loadComments, COMMENT_REFRESH_DELAY);
 };
