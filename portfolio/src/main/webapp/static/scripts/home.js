@@ -78,10 +78,11 @@ const drawTimeDistributionChart = () => {
   data.addColumn('number', 'Time');
   data.addRows([
     ['Sleeping', 8],
-    ['Coding', 7.5],
-    ['Eating', 2],
+    ['Coding', 5],
+    ['Eating', 1],
     ['YouTube', 3],
-    ['Watching Movies/TV', 3.5]
+    ['Watching Movies/TV', 3],
+    ['Wasting Time', 4]
   ]);
 
   const options = {
