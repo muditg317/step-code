@@ -47,3 +47,59 @@ window.addEventListener('scroll', function(e) {
     ticking = true;
   }
 });
+
+
+const drawProgrammmingExperienceChart = () => {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Language');
+  data.addColumn('number', 'Years');
+  data.addRows([
+    ['Java', 6],
+    ['Python', 5],
+    ['C/C++', 2],
+    ['Javascript', 2]
+  ]);
+
+  const options = {
+    'title': 'Programming Language Experience (Years)',
+    'width': 500,
+    'height': 400,
+    'backgroundColor': { fill: 'transparent' }
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('experience-chart-container'));
+  chart.draw(data, options);
+}
+
+const drawTimeDistributionChart = () => {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Activity');
+  data.addColumn('number', 'Time');
+  data.addRows([
+    ['Sleeping', 8],
+    ['Coding', 7.5],
+    ['Eating', 2],
+    ['YouTube', 3],
+    ['Watching Movies/TV', 3.5]
+  ]);
+
+  const options = {
+    'title': 'What I Do In A Day (Hours)',
+    'width': 500,
+    'height': 400,
+    'backgroundColor': { fill: 'transparent' }
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('activities-chart-container'));
+  chart.draw(data, options);
+}
+
+const drawCharts = () => {
+  drawProgrammmingExperienceChart();
+  drawTimeDistributionChart();
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawCharts);
