@@ -1,0 +1,35 @@
+.rising-button {
+  box-shadow: 5px 5px 2px grey;
+}
+
+.rising-button:hover {
+  box-shadow: 7px 7px 4px grey;
+}
+
+#back-to-top-block {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 99;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  max-width: 60px;
+  width: 60px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 0.5em;
+}
+
+#back-to-top-block:hover {
+  right: 22px;
+  bottom: 22px;
+}
+
+#back-to-top-block > p {
+  text-align: center;
+  margin: 0px;
+  margin-bottom: 10px;
+}

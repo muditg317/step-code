@@ -14,8 +14,12 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
+import com.google.sps.data.UserAccount;
 import com.hubspot.jinjava.Jinjava;
 import com.hubspot.jinjava.JinjavaConfig;
 import com.hubspot.jinjava.loader.FileLocator;
@@ -29,16 +33,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/", "/main"})
-public class MainServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/comments"})
+public class CommentServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    System.out.println("REQUEST AT: " + request.getServletPath());
-    if (request.getServletPath() != "" && request.getServletPath() != "/") {
-      response.sendRedirect("/");
-      // return;
-    }
+    System.out.println("COMMENTS PAGE REQUEST");
     response.setContentType("text/html;");
 
     JinjavaConfig config = new JinjavaConfig();
@@ -51,10 +51,18 @@ public class MainServlet extends HttpServlet {
     }
 
     Map<String, Object> context = new HashMap<>();
-    context.put("url", "/");
+    context.put("url", "/comments");
+
+    UserService userService = UserServiceFactory.getUserService();
+    if (userService.isUserLoggedIn()) {
+      User user = userService.getCurrentUser();
+      if (UserAccount.accountExists(user)) {
+        context.put("userNickname", UserAccount.getUserNickname(user.getUserId()));
+      }
+    }
 
     String template =
-        Resources.toString(this.getClass().getResource("/templates/home.html"), Charsets.UTF_8);
+        Resources.toString(this.getClass().getResource("/templates/comments.html"), Charsets.UTF_8);
 
     String renderedTemplate = jinjava.render(template, context);
 

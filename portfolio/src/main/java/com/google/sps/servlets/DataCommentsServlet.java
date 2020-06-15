@@ -24,8 +24,12 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
+import com.google.sps.data.UserAccount;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,25 +43,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data-comments")
 public class DataCommentsServlet extends HttpServlet {
 
+  private static final int DEFAULT_MAX_COMMENTS = 100;
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Key mostRecentCommentKey = getKeyFromRequest(request, "Comment");
-
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-
-    int maxComments = getMaxComments(request);
-
-    List<Comment> comments = getCommentsFromQuery(results, maxComments);
-
-    if (mostRecentCommentKey != null) {
-      ensureIdPresentInCommentList(comments, mostRecentCommentKey);
-    }
-
-    while (comments.size() > maxComments) {
-      comments.remove(maxComments);
-    }
+    List<Comment> comments =
+        getComments(getMaxComments(request), getKeyFromRequest(request, "Comment"));
 
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(comments));
@@ -76,18 +67,26 @@ public class DataCommentsServlet extends HttpServlet {
 
   private int getMaxComments(HttpServletRequest request) {
     String maxCommentParam = request.getParameter("maxComments");
-    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : 100;
+    return maxCommentParam != null ? Integer.parseInt(maxCommentParam) : DEFAULT_MAX_COMMENTS;
   }
 
-  private List<Comment> getCommentsFromQuery(PreparedQuery results, int maxComments) {
+  private List<Comment> getComments(int maxComments, Key mostRecentCommentKey) {
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>(maxComments);
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(maxComments))) {
-      String comment = (String) entity.getProperty("comment");
-      long id = (long) entity.getKey().getId();
-      comments.add(new Comment(comment, id));
+      comments.add(new Comment(entity));
       if (comments.size() >= maxComments) {
         break;
       }
+    }
+    if (mostRecentCommentKey != null) {
+      ensureIdPresentInCommentList(comments, mostRecentCommentKey);
+    }
+
+    while (comments.size() > maxComments) {
+      comments.remove(maxComments);
     }
     return comments;
   }
@@ -97,9 +96,7 @@ public class DataCommentsServlet extends HttpServlet {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       try {
         Entity keyBasedEntity = datastore.get(requiredKey);
-        String comment = (String) keyBasedEntity.getProperty("comment");
-        long id = (long) keyBasedEntity.getKey().getId();
-        comments.add(new Comment(comment, id));
+        comments.add(new Comment(keyBasedEntity));
       } catch (EntityNotFoundException e) {
       }
     }
@@ -109,10 +106,21 @@ public class DataCommentsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment");
     Key key = null;
+    UserService userService = UserServiceFactory.getUserService();
+    if (!userService.isUserLoggedIn()) {
+      response.setStatus(401); // unauthorized
+      return;
+    }
+    User user = userService.getCurrentUser();
+    if (!UserAccount.accountExists(user)) {
+      response.setStatus(401); // unauthorized
+      return;
+    }
     if (comment != null && comment.length() > 0) {
       Entity commentEntity = new Entity("Comment");
       commentEntity.setProperty("comment", comment);
       commentEntity.setProperty("timestamp", System.currentTimeMillis());
+      commentEntity.setProperty("userID", user.getUserId());
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
       key = commentEntity.getKey();

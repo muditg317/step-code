@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Mudit Gupta{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  {% set styles = [
+      "static/styles/create-account.css"
+    ] %}
+  {% for style in styles %}
+    <link rel="stylesheet" type="text/css" href={{ style }}>
+  {% endfor %}
+{% endblock %}
+
+{% block header %}
+  {% set nav_items = [
+      {
+        "baseURL": "/", "sectionID": "who-am-i", "iconLabel": "user", "text": "Who Am I?"
+      },
+      {
+        "baseURL": "/", "sectionID": "projects", "iconLabel": "book", "text": "Projects"
+      },
+      {
+        "baseURL": "/", "sectionID": "gallery", "iconLabel": "picture-o", "text": "Gallery"
+      },
+      {
+        "baseURL": "/", "sectionID": "find-me-online", "iconLabel": "globe", "text": "Find Me Online"
+      },
+      {
+        "baseURL": "/comments", "sectionID": "comments", "iconLabel": "file", "text": "Comments"
+      }
+    ] %}
+  {% include "navbar.html" %}
+{% endblock %}
+
+{% block main_content %}
+  <div class="content-block" id="create account">
+    <h1>Create Account</h1>
+    <div class="content">
+      <label for="nickname-input" id="error-text"></label>
+      <input type="text" id="nickname-input" placeholder="Enter a screen name" />
+      <button id="create-account-button">Create account!</button>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% set scripts = [
+      "static/scripts/create-account.js"
+    ]%}
+  {% for script in scripts %}
+    <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+  {% endfor %}
+{% endblock %}

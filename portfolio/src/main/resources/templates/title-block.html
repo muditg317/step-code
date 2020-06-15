@@ -1,8 +1,11 @@
 {% set styles = [
     "static/styles/title-block.css"
- ] %}
+  ] %}
+{% if title_image is not defined %}
+  {% set title_image = "static/images/blank.png" %}
+{% endif %}
 {% for style in styles %}
- <link rel="stylesheet" type="text/css" href={{ style }}>
+  <link rel="stylesheet" type="text/css" href={{ style }}>
 {% endfor %}
 <div class="title-block" id="top">
   <img id="title-bkgd-img" src="{{ title_image|e }}" alt="blurred title image"/>
@@ -10,7 +13,7 @@
     <img id="title-image" src="{{ title_image|e }}" alt="title image"/>
     <div class="title-content">
       <h1 class="title-content-item">
-        <center id="title">{{ self.title() }}</center>
+        <center id="title" class="{{title_class}}">{{ title }}</center>
       </h1>
       {% if title_links is defined %}
         <div class="title-content-item" id="quick-links">

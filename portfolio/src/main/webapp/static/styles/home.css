@@ -1,51 +1,5 @@
-.content-block {
-  display: flex;
-  flex-flow: column nowrap;
-  min-height: 30em;
-  width: 100%;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.content-block > h1 {
-  align-self: center;
-}
-
-.rising-button {
-  box-shadow: 5px 5px 2px grey;
-}
-
-.rising-button:hover {
-  box-shadow: 7px 7px 4px grey;
-}
-
-#back-to-top-block {
-  display: none;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 99;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  max-width: 60px;
-  width: 60px;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 0.5em;
-}
-
-#back-to-top-block:hover {
-  right: 22px;
-  bottom: 22px;
-}
-
-#back-to-top-block > p {
-  text-align: center;
-  margin: 0px;
-  margin-bottom: 10px;
+.main-body::after {
+  background-image: url("/static/images/tech tower.jpg");
 }
 
 .about-me-text {
@@ -85,6 +39,10 @@
 #badge-container > * {
   margin: 2em;
 }
+.company-logo {
+  width: 6.25em;
+  height: 6.25em;
+}
 
 .content-block#resume .content {
   display: flex;
@@ -98,9 +56,4 @@
   height: 1145px;
   overflow: hidden;
   border-radius: 1.5em;
-}
-
-#comment-list {
-    max-height: 30em;
-    overflow-y: scroll;
 }

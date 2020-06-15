@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Comment - Mudit Gupta{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  {% set styles = [
+      "static/styles/comments.css",
+      "static/styles/toTopButton.css"
+    ] %}
+  {% for style in styles %}
+    <link rel="stylesheet" type="text/css" href={{ style }}>
+  {% endfor %}
+{% endblock %}
+
+{% block header %}
+  {% set nav_items = [
+      {
+        "baseURL": "/", "sectionID": "who-am-i", "iconLabel": "user", "text": "Who Am I?"
+      },
+      {
+        "baseURL": "/", "sectionID": "projects", "iconLabel": "book", "text": "Projects"
+      },
+      {
+        "baseURL": "/", "sectionID": "gallery", "iconLabel": "picture-o", "text": "Gallery"
+      },
+      {
+        "baseURL": "/", "sectionID": "find-me-online", "iconLabel": "globe", "text": "Find Me Online"
+      },
+      {
+        "baseURL": "/comments", "sectionID": "comments", "iconLabel": "file", "text": "Comments"
+      }
+    ] %}
+  {% include "navbar.html" %}
+  {% if userNickname is defined %}
+    {% set title = "Say something " + userNickname + "!" %}
+  {% else %}
+    {% set title = "Say something!" %}
+  {% endif %}
+  {% set title_class = "margin-1" %}
+  {% include "title-block.html" %}
+{% endblock %}
+
+{% block main_content %}
+  <button class="authentication-button pretty-button" id="auth-button"></button>
+  <div class="content-block" id="comments">
+    <h1>Comments</h1>
+    <div class="content" id="comment-container">
+      <textarea name="message" rows="5" cols="30" id="comment-text" ></textarea>
+      <button onclick="postComment(); return false">Post comment!</button>
+      <label for="num-comments">Comments to show:</label>
+      <input onchange="loadComments()" type="number" id="num-comments" name="num-comments" min="1" max="10000" required="" value="100">
+      <table id="comment-list"></table>
+    </div>
+  </div>
+  <div class="rising-button" id="back-to-top-block" onclick="goToTop()">
+    <p>Back to top:</p>
+    <img src="static/images/up_arrow.png" alt="">
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% set scripts = [
+      "static/scripts/comments.js",
+      "static/scripts/toTopButton.js"
+    ]%}
+  {% for script in scripts %}
+    <script charset="utf-8" type="text/javascript" src={{ script }}></script>
+  {% endfor %}
+{% endblock %}
