@@ -44,17 +44,19 @@
         and we reached the international competition twice! After graduating from GSMST, I became a student at Georgia Tech.
         I'm working towards a Computer Science degree, focusing on artificial intelligence and modeling/simulation.
       </p>
+      <div id="activities-chart-container"></div>
     </div>
   </div>
   <div class="content-block" id="projects">
     <h1>Projects</h1>
     <div class="content">
-      <ul>
+      <ul id="projects-list">
         <li>VEX Robotics 2016-2019</li>
         <li>Woke! app</li>
         <li>Pineapple game</li>
         <li>CS-Vis</li>
       </ul>
+      <div id="experience-chart-container"></div>
     </div>
   </div>
   <div class="content-block" id="gallery">
@@ -98,6 +100,7 @@
 {% block scripts %}
   {{ super() }}
   {% set scripts = [
+      "https://www.gstatic.com/charts/loader.js",
       "static/scripts/home.js",
       "static/scripts/comments.js",
       "static/scripts/toTopButton.js",
